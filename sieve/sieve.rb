@@ -1,39 +1,17 @@
 class Sieve
-  INITIAL_MARKER = 'O'
-  PRIME_MARKER = 'P'
-  COMPOSITE_MARKER = 'X'
-
-  attr_reader :max_number, :range
+  attr_reader :unsieved
 
   def initialize(number)
-    @max_number = number
-    @range = create_range
-  end
-
-  def create_range
-    result = {}
-    (2..max_number).each do |number|
-      result[number] = INITIAL_MARKER
-    end
-    result
+    @unsieved = (2..number).to_a
   end
 
   def primes
-    loop do
-      break if unmarked.empty?
-      initial_number = unmarked.first
-      range[initial_number] = PRIME_MARKER
-      number = initial_number
-      loop do
-        number += initial_number
-        break if number > max_number
-        range[number] = COMPOSITE_MARKER
-      end
+    prime_numbers = []
+    while unsieved.any?
+      prime = unsieved.shift
+      unsieved.reject! { |num| num % prime == 0 }
+      prime_numbers << prime
     end
-    range.select { |num, marker| marker == PRIME_MARKER }.keys
-  end
-
-  def unmarked
-    range.select { |num, marker| marker == INITIAL_MARKER }.keys
+    prime_numbers
   end
 end
