@@ -1,5 +1,3 @@
-require 'pry'
-
 class Sieve
   INITIAL_MARKER = 'O'
   PRIME_MARKER = 'P'
@@ -22,7 +20,8 @@ class Sieve
 
   def primes
     loop do
-      initial_number = unmarked.first || break
+      break if unmarked.empty?
+      initial_number = unmarked.first
       range[initial_number] = PRIME_MARKER
       number = initial_number
       loop do
