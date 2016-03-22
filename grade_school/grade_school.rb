@@ -1,25 +1,25 @@
 class School
-  attr_accessor :students
+  attr_reader :roster
 
   def initialize
-    @students = {}
+    @roster = {}
   end
 
   def to_h
-    sorted_students = students.sort_by { |grade, _names| grade }.to_h
-    sorted_students.each_value(&:sort!)
-    sorted_students
+    sorted_roster = roster.sort.to_h
+    sorted_roster.each_value(&:sort!)
+    sorted_roster
   end
 
   def add(name, grade)
-    if students[grade]
-      students[grade].push(name)
+    if roster[grade]
+      roster[grade].push(name)
     else
-      students[grade] = [name]
+      roster[grade] = [name]
     end
   end
 
   def grade(number)
-    students[number] || []
+    roster[number] || []
   end
 end
