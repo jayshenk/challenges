@@ -6,7 +6,7 @@ class Series
   end
 
   def slices(slice_length)
-    raise ArgumentError if slice_length > digits.length
+    raise ArgumentError, 'Number is too large.' if slice_length > digits.length
 
     result = []
     counter = 0
