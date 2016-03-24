@@ -9,11 +9,11 @@ class Series
     raise ArgumentError, 'Number is too large.' if slice_length > digits.length
 
     result = []
-    counter = 0
+    index = 0
     stop_index = digits.length - slice_length
-    while counter <= stop_index
-      result << digits[counter, slice_length]
-      counter += 1
+    while index <= stop_index
+      result << digits[index, slice_length]
+      index += 1
     end
     result
   end
