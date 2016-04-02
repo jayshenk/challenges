@@ -14,7 +14,7 @@ class Prime
           break
         end
       end
-      current_num += 1
+      current_num += 2
     end
 
     primes.last
